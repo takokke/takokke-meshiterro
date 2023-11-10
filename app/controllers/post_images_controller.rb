@@ -14,6 +14,19 @@ class PostImagesController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @post_image = PostImage.find(params[:id])
+  end
+  
+  def update
+    @post_image = PostImage.find(params[:id])
+    if @post_image.update(post_image_params)
+      redirect_to post_image_path(id: @post_image.id)
+    else
+      render :edit
+    end
+  end
 
   def index
     respond_to do |format|
@@ -42,4 +55,5 @@ class PostImagesController < ApplicationController
   def post_image_params
     params.require(:post_image).permit(:shop_name, :image, :caption, :address)
   end
+  
 end
