@@ -15,6 +15,9 @@
               <strong><i class="far fa-flag"></i><span> <%= post_image.shop_name %></span></strong>
             <% end %>
           </p>
+          <p class="card-title">
+            <span><i class="fa-solid fa-location-dot"></i> <%= post_image.address %></span>
+          </p>
           <p class="card-text">説明：<%= post_image.caption %></p>
           <span><i class="fas fa-user"></i> By <%= post_image.user.name %> ｜ </span>
           <span><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:'text-dark'; %></span>             

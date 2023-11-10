@@ -12,6 +12,9 @@
               <strong><i class="far fa-flag"></i><span> <%= @post_image.shop_name %></span></strong>
             <% end %>
           </p>
+          <p class="card-title">
+            <span><i class="fa-solid fa-location-dot"></i> <%= @post_image.address %></span>
+          </p>
           <p class="card-title">説明：<%= @post_image.caption %></p>
           <span><i class="fas fa-user"></i> By <%= @post_image.user.name %> ｜ </span>
           <span><i class="fa fa-calendar"></i> <%= @post_image.created_at.strftime('%Y/%m/%d') %> ｜ </span>

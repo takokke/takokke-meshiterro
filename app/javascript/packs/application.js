@@ -13,6 +13,9 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 
+import "./jpostal"
+import "./map"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

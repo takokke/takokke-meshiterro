@@ -10,7 +10,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
   <body class="d-flex flex-column vh-100">
     <!--ヘッダー-->
     <header class="shadow-sm">
@@ -25,6 +25,9 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
+              <%= link_to "投稿一覧", post_images_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
@@ -32,6 +35,9 @@
             </li>
             <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "地図で見る", map_path, class: 'nav-link text-dark' %>
             </li>
             <% else %>
             <li class="nav-item">
@@ -46,11 +52,11 @@
         </div>
       </nav>
     </header>
-    
+
     <main class="mb-auto">
     <%= yield %>
     </main>
-    
+
     <!--フッター部分-->
     <footer class="bg-dark text-white pt-5 pb-4">
       <div class="container">
