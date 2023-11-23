@@ -13,7 +13,7 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.6648863, lng: 133.916252 },
     zoom: 15,
-    mapTypeControl: false
+    mapTypeControl: true
   });
   
     // クリックイベントを追加、緯度経度
@@ -23,7 +23,8 @@ async function initMap() {
   });
   
   // 地図の検索
-  document.getElementById('search').addEventListener('click', function() {
+  
+  $('#search').on('click', function() {
     let place = $("#keyword").val();
     let geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
 
@@ -31,9 +32,7 @@ async function initMap() {
       address: place
     }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-
         let bounds = new google.maps.LatLngBounds();
-
         for (let i in results) {
           if (results[0].geometry) {
             // 緯度経度を取得
