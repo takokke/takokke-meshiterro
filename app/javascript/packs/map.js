@@ -15,6 +15,41 @@ async function initMap() {
     zoom: 15,
     mapTypeControl: false
   });
+  
+    // クリックイベントを追加、緯度経度
+  map.addListener('click', function(e) {
+    $("#ido").val(e.latLng.lat());
+    $("#keido").val(e.latLng.lng());
+  });
+  
+  // 地図の検索
+  document.getElementById('search').addEventListener('click', function() {
+    let place = $("#keyword").val();
+    let geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+
+    geocoder.geocode({
+      address: place
+    }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+
+        let bounds = new google.maps.LatLngBounds();
+
+        for (let i in results) {
+          if (results[0].geometry) {
+            // 緯度経度を取得
+            let latlng = results[0].geometry.location;
+            // mapのcenterに取得した緯度経度をセット
+            map.setCenter(latlng)
+          }
+        }
+      } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+        alert("見つかりません");
+      } else {
+        console.log(status);
+        alert("エラー発生");
+      }
+    });
+  });
 
   const response = await fetch("/post_images.json").then((res) => res.json()).catch(error => console.error(error));
   const items = response.data.items;
@@ -31,12 +66,12 @@ async function initMap() {
             <img class="rounded-circle mr-2" src="${item.user.image}" width="40" height="40"><p class="lead m-0 font-weight-bold">${item.user.name}</p>
           </div>
           <div class="mb-3">
-            <img class="thumbnail" src="${item.image}" width="300" loading="lazy">
+            <img class="thumbnail" src="${item.image}" width="220" loading="lazy">
           </div>
           <div>
             <h1 class="h4 font-weight-bold">${item.shop_name}</h1>
             <p class="text-muted">${item.address}</p>
-            <p class="lead">${item.caption}</p>
+            <p class="lead" style="width: 220px;">${item.caption}</p>
           </div>
         </div>
       `,

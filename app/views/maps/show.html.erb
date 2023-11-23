@@ -1,4 +1,24 @@
 <div class="container">
+  <div>地図を検索 （例：広島県福山市）</div>
+  <input type="text" id="keyword"><button id="search">検索実行</button>
+  <button id="clear">結果クリア</button>
+  <div id="target"></div>
+  
+  
+  <form action="#" method="post" class="form-example">
+    <div class="form-example">
+      <label for="name">緯度: </label>
+      <input type="text" name="name" id="ido" required />
+    </div>
+    <div class="form-example">
+      <label for="email">軽度: </label>
+      <input type="email" name="email" id="keido" required />
+    </div>
+    <div class="form-example">
+      <input type="submit" value="登録！" />
+    </div>
+  </form>
+
   <div id="map"></div>
 </div>
 
